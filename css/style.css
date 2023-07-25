@@ -1337,3 +1337,15 @@ input[type="text"] {
 body {
   padding-top: 100px;
 }
+
+/* Establece una altura mínima para las secciones para evitar cambios bruscos de diseño */
+section {
+  min-height: 100vh;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0; /* Inicialmente, las secciones están ocultas */
+}
+
+/* Cuando la sección está activa, muestra su contenido */
+section.active {
+  opacity: 1;
+}

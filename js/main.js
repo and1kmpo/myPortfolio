@@ -1,6 +1,37 @@
 (function () {
   "use strict";
 
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    links.forEach((link) => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const target = document.querySelector(link.getAttribute("href"));
+
+        if (target) {
+          // Añadir la clase "active" a la sección objetivo
+          target.classList.add("active");
+
+          // Remover la clase "active" de las otras secciones
+          const sections = document.querySelectorAll(
+            "section:not(" + link.getAttribute("href") + ")"
+          );
+          sections.forEach((section) => {
+            section.classList.remove("active");
+          });
+
+          // Desplazarse suavemente a la sección objetivo
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
+    });
+  });
+
   var isMobile = {
     Android: function () {
       return navigator.userAgent.match(/Android/i);
